@@ -1,0 +1,3 @@
+class MatchChatsController < ApplicationController
+
+end
