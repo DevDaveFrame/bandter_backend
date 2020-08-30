@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  has_many :friended_joins, foreign_key: :friendee_id, class_name: 'Friendship'
-  has_many :frienders, through: :friended_joins
+  has_many :offered_matches, foreign_key: :friendee_id, class_name: 'MatchChat'
+  has_many :frienders, through: :offered_matches
 
-  has_many :friending_joins, foreign_key: :friender_id, class_name: 'Friendship'
-  has_many :friendees, through: :friending_joins
+  has_many :initiated_matches, foreign_key: :friender_id, class_name: 'MatchChat'
+  has_many :friendees, through: :initiated_matches
 
   has_many :songs
   has_many :genres, through: :songs
@@ -24,16 +24,16 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, :on => :create
 
-      def friends
+      def matches
         self.frienders + self.friendees
       end
     
-      def friendships
-        self.friended_joins + self.friending_joins
+      def match_chats
+        self.offered_matches + self.initiated_matches
       end
     
       def friend_requests
-        self.friending_users.where(accepted == false)
+        self.offered_matches.where(accepted == false)
       end
 end
 
