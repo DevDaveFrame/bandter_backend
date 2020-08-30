@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :songs
   has_many :genres, through: :songs
   has_many :messages
-  has_many :match_chats
 
   # NAME VALIDATIONS
   validates :name,  presence: true, length: { maximum: 50 }
@@ -30,6 +29,10 @@ class User < ApplicationRecord
     
       def match_chats
         self.offered_matches + self.initiated_matches
+      end
+
+      def match_chat_ids
+        self.match_chats.map{ |match_chat| match_chat.id }
       end
     
       def friend_requests

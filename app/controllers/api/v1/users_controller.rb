@@ -3,9 +3,8 @@ class Api::V1::UsersController < ApplicationController
   before_action :find_user, only: [:show, :update]
   def create
     user = User.new(user_params)
-    options = {include: [:match_chats]}
     if user.save
-      render json: {user: UserSerializer.new(user, option).serializable_hash, token: encode_token({user_id: user.id})}
+      render json: {user: UserSerializer.new(user).serializable_hash, token: encode_token({user_id: user.id})}
     else
       render json: {errors: "OH NO! > o < "}
     end
@@ -13,13 +12,11 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    options = {include: [:match_chats]}
-    render json: {user: UserSerializer.new(user, options).serializable_hash, token: encode_token({user_id: user.id})}
+    render json: {user: UserSerializer.new(user).serializable_hash, token: encode_token({user_id: user.id})}
   end
 
   def update
     user.update(user_params)
-    options = {include: [:match_chats]}
     render json: {user: UserSerializer.new(user, options).serializable_hash, token: encode_token({user_id: user.id})}
   end
 
