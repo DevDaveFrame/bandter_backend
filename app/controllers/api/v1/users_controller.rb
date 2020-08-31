@@ -12,7 +12,8 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: {user: UserSerializer.new(user).serializable_hash, token: encode_token({user_id: user.id})}
+    options = {include: [:match_chats]}
+    render json: {user: UserSerializer.new(user, options).serializable_hash, token: encode_token({user_id: user.id})}
   end
 
   def update
