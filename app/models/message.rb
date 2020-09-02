@@ -6,4 +6,9 @@ class Message < ApplicationRecord
     MessageCreationEventBroadcastJob.perform_later(self)
   end
 
+  def username
+    user = User.find(self.user_id)
+    return user.name
+  end
+
 end

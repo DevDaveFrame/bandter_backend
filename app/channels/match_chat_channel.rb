@@ -6,7 +6,7 @@ class MatchChatChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
+    puts "HITTING IT"
   end
 
   def create(opts)
