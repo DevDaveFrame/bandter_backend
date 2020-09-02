@@ -3,7 +3,7 @@ class MessageCreationEventBroadcastJob < ApplicationJob
   
     def perform(message)
       match_chat = MatchChat.find(message.match_chat_id)
-      MatchChatChannel.broadcast_to(match_chat, message)
+      MatchChatChannel.broadcast_to(match_chat, MessageSerializer.new(message))
       # ActionCable
       #   .server
       #   .broadcast('match_chat_channel',
