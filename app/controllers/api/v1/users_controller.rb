@@ -1,6 +1,12 @@
 class Api::V1::UsersController < ApplicationController
   skip_before_action :logged_in?, only: [:create]
   before_action :find_user, only: [:show, :update]
+  
+  def index
+    users = User.all 
+    render json: UserSerializer.new(users).serializable_hash
+  end
+  
   def create
     user = User.new(user_params)
     if user.save
