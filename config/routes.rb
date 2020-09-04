@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :user_instruments
+  resources :instruments
+  resources :user_genres
   namespace :api do
     namespace :v1 do
       resources :messages
