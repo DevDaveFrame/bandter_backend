@@ -43,3 +43,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jwt'
 gem 'faker'
 gem 'fast_jsonapi'
+gem 'activestorage-audio', '~> 0.1.0'
