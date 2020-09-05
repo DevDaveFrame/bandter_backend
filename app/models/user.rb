@@ -5,14 +5,17 @@ class User < ApplicationRecord
 
   has_many :initiated_matches, foreign_key: :friender_id, class_name: 'MatchChat'
   has_many :friendees, through: :initiated_matches
-
-  has_many :song_genres, through: :songs, class_name: 'Genre'
-  has_many :taste_genres, through: :user_genres, class_name: 'Genre'
   
-  has_many :instruments, through: :user_instruments
-  has_many :songs
-
   has_many :messages
+  has_many :songs
+  has_many :user_genres
+
+  has_many :song_genres, through: :songs, source: :genre, class_name: 'Genre'
+  has_many :taste_genres, through: :user_genres, source: :genre, class_name: 'Genre'
+  
+  has_many :user_instruments
+  has_many :instruments, through: :user_instruments
+
 
   # NAME VALIDATIONS
   validates :first_name,  presence: true, length: { maximum: 30 }
@@ -30,7 +33,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, :on => :create
 
       def name
-        self.firstname + " " + self.lastname
+        self.first_name + " " + self.last_name
       end
 
       def matches
