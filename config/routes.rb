@@ -9,9 +9,7 @@ Rails.application.routes.draw do
       resources :photos
       resources :genres
       resources :songs
-      resources :users, only: [:create, :update] do
-        get :profile_picture
-      end
+      resources :users
     end
   end
 
