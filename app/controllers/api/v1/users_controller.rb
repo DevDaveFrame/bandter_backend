@@ -26,15 +26,17 @@ class Api::V1::UsersController < ApplicationController
     byebug
     user = User.find(params[:id])
     if params[:profile_picture]
-      # The data is a file upload coming from <input type="file" />
       user.profile_picture.attach(params[:profile_picture])
-      # Generate a url for easy display on the front end 
       photo = url_for(user.profile_picture)
       user.update(img_url: photo)
     else
       user.update(user_params)
       render json: {user: UserSerializer.new(user).serializable_hash, token: encode_token({user_id: user.id})}
     end
+  end
+
+  def query
+    
   end
 
   private 
