@@ -31,9 +31,8 @@ class Api::V1::UsersController < ApplicationController
       # Generate a url for easy display on the front end 
       photo = url_for(user.profile_picture)
       user.update(img_url: photo)
-    end
-      # Now save that url in the profile
-    if user.update(user_params)
+    else
+      user.update(user_params)
       render json: {user: UserSerializer.new(user).serializable_hash, token: encode_token({user_id: user.id})}
     end
   end
