@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :user_instruments
-  resources :instruments
   resources :user_genres
   namespace :api do
     namespace :v1 do
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
       resources :match_chats
       resources :photos
       resources :genres
+      resources :instruments
       resources :songs
       resources :users
     end
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   post "api/v1/login", to: "api/v1/auth#create"
   post "api/v1/signup", to: "api/v1/users#create"
+  get "api/v1/discover/?{:query}", to: "api/v1/users#query"
 
   mount ActionCable.server => '/cable'
 
