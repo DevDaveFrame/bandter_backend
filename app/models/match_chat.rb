@@ -19,4 +19,9 @@ class MatchChat < ApplicationRecord
     user = User.find(self.friendee_id)
     user.img_url
   end
+
+  def user_ids
+    [self.friender_id, self.friendee_id]
+  end
+
 end

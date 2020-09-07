@@ -36,9 +36,14 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def query
-    filtered_users = User.all.select{|user| (user.genre_ids & params[:genreFilters]).any? }
-    options = options = {include: [:songs]}
-    render json: UserSerializer.new(filtered_users, options).serializable_hash
+    if params[:genreFilters].length > 0 || params[:instrumentFilters].length > 0
+      genre_filtered_users = User.all.select{|user| (user.genre_ids & params[:genreFilters]).any? }
+      inst_filtered_users = User.all.select{|user| (user.instrument_ids & params[:instrumentFilters]).any? }
+      filtered_users = genre_filtered_users + inst_filtered_users
+    else 
+      filtered_users = User.all
+    end
+    render json: filtered_users, only: [:id, :first_name, :last_name, :bio, :img_url], include: [:songs, :genres, :instruments]
   end
 
   private 
