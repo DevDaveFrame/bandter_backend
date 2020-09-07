@@ -55,5 +55,9 @@ class User < ApplicationRecord
       def genres
         self.song_genres + self.taste_genres
       end
+
+      def genre_ids
+        self.genres.map { |genre| genre.id }
+      end
 end
 

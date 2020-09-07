@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   post "api/v1/login", to: "api/v1/auth#create"
   post "api/v1/signup", to: "api/v1/users#create"
-  get "api/v1/discover/?{:query}", to: "api/v1/users#query"
+  post "api/v1/discover", to: "api/v1/users#query"
 
   mount ActionCable.server => '/cable'
 

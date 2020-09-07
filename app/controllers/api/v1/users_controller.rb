@@ -36,7 +36,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def query
-    
+    filtered_users = User.all.select{|user| (user.genre_ids & params[:genreFilters]).any? }
+    options = options = {include: [:songs]}
+    render json: UserSerializer.new(filtered_users, options).serializable_hash
   end
 
   private 
