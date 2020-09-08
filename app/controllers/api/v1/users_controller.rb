@@ -23,7 +23,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    byebug
+
     user = User.find(params[:id])
     if params[:profile_picture]
       user.profile_picture.attach(params[:profile_picture])

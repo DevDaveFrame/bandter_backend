@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one_attached :profile_picture
+
   has_many :offered_matches, foreign_key: :friendee_id, class_name: 'MatchChat'
   has_many :frienders, through: :offered_matches
 
@@ -54,7 +55,8 @@ class User < ApplicationRecord
       end
     
       def friend_requests
-        self.offered_matches.where(accepted: false)
+        requests = self.offered_matches.where(accepted: false)
+        MatchChatSerializer.new(requests)
       end
 
       def pending_requests

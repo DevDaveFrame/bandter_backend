@@ -11,7 +11,6 @@ class Api::V1::MatchChatsController < ApplicationController
   end
 
   def friending
-    byebug
     existing_match = MatchChat.where(friender_id: params[:friender_id], friendee_id: params[:friendee_id])
     .or(MatchChat.where(friender_id: params[:friendee_id], friendee_id: params[:friender_id]))
     if existing_match.empty?
