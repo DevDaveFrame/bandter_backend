@@ -36,12 +36,17 @@ class User < ApplicationRecord
         self.first_name + " " + self.last_name
       end
 
-      def friends
-        self.frienders + self.friendees
-      end
-    
       def match_chats
         self.offered_matches.where(accepted: true) + self.initiated_matches.where(accepted: true)
+      end
+      
+      def friends
+        friender_ids = self.match_chats.map{|match| match.friender_id}
+        friendee_ids = self.match_chats.map{|match| match.friendee_id}
+        all_ids = friender_ids + friendee_ids
+        friend_ids = all_ids.uniq.select{|id| id != self.id}
+        friends = friend_ids.map{|id| User.find_by(id: id)}
+        friends.map{|friend| {id: friend.id, name: friend.name, img_url: friend.img_url}}
       end
 
       def match_chat_ids
