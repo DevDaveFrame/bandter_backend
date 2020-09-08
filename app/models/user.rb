@@ -36,7 +36,7 @@ class User < ApplicationRecord
         self.first_name + " " + self.last_name
       end
 
-      def matches
+      def friends
         self.frienders + self.friendees
       end
     
