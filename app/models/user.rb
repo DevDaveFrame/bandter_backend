@@ -41,7 +41,7 @@ class User < ApplicationRecord
       end
     
       def match_chats
-        self.offered_matches + self.initiated_matches
+        self.offered_matches.where(accepted: true) + self.initiated_matches.where(accepted: true)
       end
 
       def match_chat_ids
@@ -49,8 +49,12 @@ class User < ApplicationRecord
       end
     
       def friend_requests
-        self.offered_matches.where(accepted == false)
+        self.offered_matches.where(accepted: false)
       end
+
+      def pending_requests
+        self.initiated_matches.where(accepted: false)
+      end 
 
       def genres
         self.song_genres + self.taste_genres

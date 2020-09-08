@@ -11,13 +11,12 @@ class Api::V1::MatchChatsController < ApplicationController
   end
 
   def friending
-    existing_match = MatchChat.where(friender_id: params[:friender_id])
-    .or(MatchChat.where(friendee_id: params[:friender_id]))
-    .or(MatchChat.where(friender_id: params[:friendee_id]))
-    .or(MatchChat.where(friendee_id: params[:friendee_id]))
+    byebug
+    existing_match = MatchChat.where(friender_id: params[:friender_id], friendee_id: params[:friendee_id])
+    .or(MatchChat.where(friender_id: params[:friendee_id], friendee_id: params[:friender_id]))
     if existing_match.empty?
       requested_match = MatchChat.create(friender_id: params[:friender_id], friendee_id: params[:friendee_id], accepted: false)
-    else
+    elsif 
       requested_match = existing_match.update(accepted: true)
     end
     render json: MatchChatSerializer.new(requested_match).serializable_hash
