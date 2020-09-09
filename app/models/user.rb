@@ -64,7 +64,8 @@ class User < ApplicationRecord
       end 
 
       def genres
-        self.song_genres + self.taste_genres
+        genres = self.song_genres + self.taste_genres
+        genres.uniq
       end
 
       def genre_ids

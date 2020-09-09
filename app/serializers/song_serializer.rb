@@ -1,4 +1,4 @@
 class SongSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :description, :duration
+  attributes :id, :title, :album, :description, :duration
 end
