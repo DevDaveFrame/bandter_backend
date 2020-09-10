@@ -11,7 +11,7 @@ users = []
 30.times do
   user_fn = Faker::Name.first_name
   user_ln = Faker::Name.last_name
-  User.create(first_name: user_fn, last_name: user_ln, email: "#{user_fn}_#{user_ln}@faker.com", password: "password", bio: "I like music and whatnot.", location: "Washington, DC", img_url: Faker::Avatar.image, narrative: "I'm just a folksy gender neutral robot looking for a uke player", search_radius: 100 )
+  User.create(first_name: user_fn, last_name: user_ln, email: "#{user_fn}_#{user_ln}@faker.com", password: "password", bio: "I like music and whatnot.", location: "Washington, DC", img_url: UiFaces.face, narrative: "I'm just a folksy gender neutral robot looking for a uke player", search_radius: 100 )
 end
 
 #MATCHES
