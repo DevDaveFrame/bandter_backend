@@ -10,7 +10,8 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      render json: {user: UserSerializer.new(user).serializable_hash, token: encode_token({user_id: user.id})}
+      options = {include: [:match_chats, :songs, :photos]}
+      render json: {user: UserSerializer.new(user, options).serializable_hash, token: encode_token({user_id: user.id})}
     else
       render json: {errors: "OH NO! > o < "}
     end
@@ -29,6 +30,7 @@ class Api::V1::UsersController < ApplicationController
       user.profile_picture.attach(params[:profile_picture])
       photo = url_for(user.profile_picture)
       user.update(img_url: photo)
+      render json: {user: UserSerializer.new(user).serializable_hash, token: encode_token({user_id: user.id})}
     else
       user.update(user_params)
       render json: {user: UserSerializer.new(user).serializable_hash, token: encode_token({user_id: user.id})}

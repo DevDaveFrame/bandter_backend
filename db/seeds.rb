@@ -1,10 +1,13 @@
 #DB CLEARANCE
-User.destroy_all
+UserInstrument.destroy_all
+UserGenre.destroy_all
+Message.destroy_all
 Song.destroy_all
+Photo.destroy_all
+User.destroy_all
 MatchChat.destroy_all
 Genre.destroy_all
-Message.destroy_all
-Photo.destroy_all
+Instrument.destroy_all
 
 #USERS
 users = []
@@ -34,9 +37,9 @@ end
 
 User.all.each do |user|
   2.times do 
-    UserInstrument.create (user_id: user.id, instrument_id: Instrument.all.sample.id)
+    UserInstrument.create(user_id: user.id, instrument_id: Instrument.all.sample.id)
   end
   4.times do 
-    UserGenre.create (user_id: user.id, genre_id: Genre.all.sample.id)
+    UserGenre.create(user_id: user.id, genre_id: Genre.all.sample.id)
   end
 end
