@@ -8,14 +8,14 @@ Photo.destroy_all
 
 #USERS
 users = []
-20.times do
+30.times do
   user_fn = Faker::Name.first_name
   user_ln = Faker::Name.last_name
   User.create(first_name: user_fn, last_name: user_ln, email: "#{user_fn}_#{user_ln}@faker.com", password: "password", bio: "I like music and whatnot.", location: "Washington, DC", img_url: Faker::Avatar.image, narrative: "I'm just a folksy gender neutral robot looking for a uke player", search_radius: 100 )
 end
 
 #MATCHES
-5.times do |i|
+10.times do |i|
   users = User.all
   MatchChat.create(friender_id: users[i], friendee_id: users[-i], accepted: true)
 end
@@ -31,3 +31,12 @@ instruments = ["Guitar", "Piano", "Drumset", "Percussion", "Bass", "Cello", "Vio
 instruments.each do |inst|
   Instrument.create(name: inst)
 end 
+
+User.all.each do |user|
+  2.times do 
+    UserInstrument.create (user_id: user.id, instrument_id: Instrument.all.sample.id)
+  end
+  4.times do 
+    UserGenre.create (user_id: user.id, genre_id: Genre.all.sample.id)
+  end
+end

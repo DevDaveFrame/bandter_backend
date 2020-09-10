@@ -19,7 +19,6 @@ class Api::V1::MatchChatsController < ApplicationController
       existing_match.update(accepted: true)
       requested_match = existing_match
     end
-    byebug
     render json: MatchChatSerializer.new(requested_match).serializable_hash
   end
 
