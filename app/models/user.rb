@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :songs
   has_many :user_genres
+  has_many :photos
 
   has_many :song_genres, through: :songs, source: :genre, class_name: 'Genre'
   has_many :taste_genres, through: :user_genres, source: :genre, class_name: 'Genre'
@@ -71,5 +72,10 @@ class User < ApplicationRecord
       def genre_ids
         self.genres.map { |genre| genre.id }
       end
+
+      def photo_ids
+        self.photos.map { |photo| photo.id }
+      end
+
 end
 
