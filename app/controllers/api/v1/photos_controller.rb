@@ -11,4 +11,10 @@ class Api::V1::PhotosController < ApplicationController
   def show
     photo = photo.find(params[:id])
   end
+
+  def destroy
+    photo = Photo.find(params[:id])
+    photo.destroy
+    render json: photo
+  end
 end
