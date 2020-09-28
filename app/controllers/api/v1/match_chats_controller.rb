@@ -6,8 +6,8 @@ class Api::V1::MatchChatsController < ApplicationController
 
   def show
     match_chat = MatchChat.find(params[:id])
-    options = {include: [:messages]}
-    render json: MatchChatSerializer.new(match_chat, options)
+    options = { include: [:messages] }
+    render json: MatchChatSerializer.new(match_chat, options).serializable_hash
   end
 
   def friending
