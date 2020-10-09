@@ -1,24 +1,39 @@
-# README
+<h1 align="center">Welcome to bandter_backend 👋</h1>
+<p>
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+</p>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> A web app that helps musicians to discover, chat, and collaborate with other artists based on genre and instrument.
 
-Things you may want to cover:
+### 🏠 [Homepage](https://github.com/BartTheScrivner/bandter_frontend)
 
-* Ruby version
+### ✨ [Demo](https://youtu.be/GprBXBHcRdo)
 
-* System dependencies
+## Install
 
-* Configuration
+```sh
+bundle install
+```
 
-* Database creation
+## Usage
 
-* Database initialization
+```sh
+rails server
+```
 
-* How to run the test suite
+## Author
 
-* Services (job queues, cache servers, search engines, etc.)
+👤 **Dave Frame**
 
-* Deployment instructions
+* Website: https://medium.com/@DevDaveFrame
+* Github: [@DevDaveFrame](https://github.com/DevDaveFrame)
+* LinkedIn: [@dave-frame-mfa](https://linkedin.com/in/dave-frame-mfa)
 
-* ...
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
