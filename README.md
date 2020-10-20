@@ -1,27 +1,16 @@
 <h1 align="center">Welcome to bandter_backend 👋</h1>
 <p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
 </p>
 
-> A web app that helps musicians to discover, chat, and collaborate with other artists based on genre and instrument.
+> The RESTful API backend for Bandter, a web app that helps musicians to discover, chat, and collaborate with other artists based on genre and instrument.
 
-### 🏠 [Homepage](https://github.com/BartTheScrivner/bandter_frontend)
+### 🏠 [Homepage](https://github.com/DevDaveFrame/bandter_frontend)
 
 ### ✨ [Demo](https://youtu.be/GprBXBHcRdo)
-
-## Install
-
-```sh
-bundle install
-```
-
-## Usage
-
-```sh
-rails server
-```
 
 ## Author
 
