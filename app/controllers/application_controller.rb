@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   before_action :logged_in? 
   
   def encode_token(payload)
-    JWT.encode(payload, "fixthis", "HS256")
+    JWT.encode(payload, ENV["JWT_SECRET"], "HS256")
   end
 
   def logged_in?
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
     token = headers.split(" ")[1]
 
     begin
-      user_id = JWT.decode(token, "fixthis", "HS256")[0]["user_id"]
+      user_id = JWT.decode(token, ENV["JWT_SECRET"], "HS256")[0]["user_id"]
       user = User.find(user_id)
     rescue
       user = nil
