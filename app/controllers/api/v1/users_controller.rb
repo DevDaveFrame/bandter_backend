@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :logged_in?, only: [:create, :update]
+  skip_before_action :logged_in?, only: [:create, :update, :show]
   before_action :find_user, only: [:show, :update]
   
   def index
